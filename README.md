@@ -1,2 +1,2 @@
-# FourInARow
-Twitch chat bot application that lets you play Four In a Row with your viewer.
+# TwitchChatGames
+Games that you can play with your twitch viewers!
