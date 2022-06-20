@@ -1,0 +1,36 @@
+.dot {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border-style: solid;
+  display: inline-block;
+}
+
+.dot_clicked1 {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border-style: solid;
+  display: inline-block;
+  background-color: rgb(17, 0, 255);
+}
+
+.dot_clicked2 {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border-style: solid;
+  display: inline-block;
+  background-color: rgb(233, 12, 12);
+}
+
+.users {
+  font-size: x-large;
+}
+
+.move_button {
+  width: 105px;
+  height: 30px;
+  font-size: large;
+  text-align: center;
+}
