@@ -1,7 +1,7 @@
 const START_ENROLL_CMD = '!start'
 const STOP_ENROLL_CMD = '!stop'
-
 const JOIN_CMD = '!join'
+
 var ENROLL_IN_PROGRESS = false
 var USERS = []
 var CHOSEN_USER = null
@@ -64,12 +64,7 @@ function parse_chosen_user_message(message) {
 
     if (parsed_message >= 1 && parsed_message <= 7) {
         console.log("MAKE A MOVE")
-        MY_MOVE = true
-        row = find_first_empty_row_in_column(parsed_message - 1)
-        if(row != -1){
-            BOARD[row][parsed_message - 1] = 2
-            document.getElementById("field" + row + (parsed_message - 1)).className = "dot_clicked2";
-        }
+        make_a_move(parsed_message - 1, 2);
         enable_buttons();
     }
     else {
@@ -91,13 +86,124 @@ function find_first_empty_row_in_column(column){
 }
 
 function on_my_move(column){
+    make_a_move(column, 1);
+    disable_buttons();
+}
+
+function make_a_move(column, color){
     row = find_first_empty_row_in_column(column);
     if(row != -1){
-        BOARD[row][column] = 1
-        document.getElementById("field" + row + column).className = "dot_clicked1";
+        BOARD[row][column] = color;
+        document.getElementById("field" + row + column).className = "dot_clicked" + color;
+        MY_MOVE = color == 2;
+        if(is_gameover(row, column, color)){
+            window.alert("Player " + color + " won!");
+            MY_MOVE = true;
+            disable_buttons();
+        }
     }
-    MY_MOVE = false;
-    disable_buttons();
+}
+
+function is_gameover(row, column, color){
+    //horizontally
+    var horizontal_count = 1;
+    for(var i = column+1; i < 7; i++){
+        if(BOARD[row][i] == color){
+            horizontal_count++;
+        }
+        else{
+            break;
+        }
+    }
+    for(var i = column-1; i >= 0; i--){
+        if(BOARD[row][i] == color){
+            horizontal_count++;
+        }
+        else{
+            break;
+        }
+    }
+    if(horizontal_count >= 4){
+        return true;
+    }
+
+    //vertically
+    var vertical_count = 1;
+    for(var i = row+1; i < 6; i++){
+        if(BOARD[i][column] == color){
+            vertical_count++;
+        }
+        else{
+            break;
+        }
+    }
+    for(var i = row-1; i >= 0; i--){
+        if(BOARD[i][column] == color){
+            vertical_count++;
+        }
+        else{
+            break;
+        }
+    }
+    if(vertical_count >= 4){
+        return true;
+    }
+
+    //diagonal topleft-bottomright
+    var diagonal1_count = 1;
+    var i = 1;
+    while(row + i < 6 && column + i < 7){
+        if(BOARD[row+i][column+i] == color){
+            diagonal1_count++;
+        }
+        else{
+            break;
+        }
+        i++;
+    }
+
+    i = 1;
+    while(row - i >= 0 && column - i >= 0){
+        if(BOARD[row-i][column-i] == color){
+            diagonal1_count++;
+        }
+        else{
+            break;
+        }
+        i++;
+    }
+    if(diagonal1_count >= 4){
+        return true;
+    }
+
+    //diagonal topright-bottomleft
+    var diagonal2_count = 1;
+    var i = 1;
+    while(row + i < 6 && column - i >= 0){
+        if(BOARD[row + i][column - i] == color){
+            diagonal2_count++;
+        }
+        else{
+            break;
+        }
+        i++;
+    }
+
+    i = 1;
+    while(row - i >= 0 && column + i < 7){
+        if(BOARD[row - i][column + i] == color){
+            diagonal2_count++;
+        }
+        else{
+            break;
+        }
+        i++;
+    }
+    if(diagonal2_count >= 4){
+        return true;
+    }
+
+    return false;
 }
 
 function disable_buttons(){
