@@ -2,11 +2,11 @@
   "name": "fourinarow",
   "version": "1.0.0",
   "description": "Four In A Row chat bot",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/KipinskiPiotr/FourInARow#readme",
   "dependencies": {
-    "axios": "^0.27.2",
     "express": "^4.18.1",
     "tmi.js": "^1.5.0"
   },
