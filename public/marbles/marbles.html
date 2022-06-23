@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>Battle Royale</title>
     <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+    <script src="tmi.min.js"></script>
 </head>
 
 <body>
@@ -13,9 +14,12 @@
         <h1>Battle Royale</h1>
         <div id="phaser"></div>
     </div>
-    <h2 id="players_count">Players joined: 0</h2>
+    <div>
+        <h2 id="started_text" style="display:none;">Type !join in the chat to join the game</h2>
+        <h2 id="players_count">Players joined: 0</h2>
+    </div>
 
-    <script src="battleroyale.js"></script>
+    <script src="marbles.js"></script>
 </body>
 
 </html>

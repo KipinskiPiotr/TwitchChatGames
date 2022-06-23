@@ -12,8 +12,8 @@ app.get('/fourinarow', function(req, res) {
     res.sendFile(path.join(__dirname + '/public/fourinarow/fourinarow.html'));
 });
 
-app.get('/battleroyale', function(req, res) {
-    res.sendFile(path.join(__dirname + '/public/battleroyale/battleroyale.html'));
+app.get('/marbles', function(req, res) {
+    res.sendFile(path.join(__dirname + '/public/marbles/marbles.html'));
 });
 
 app.listen(3000);
